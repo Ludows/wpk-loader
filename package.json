@@ -6,6 +6,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "cross-env": "^7.0",
+    "deepmerge": "^4.2.2",
     "imagemin": "^6.1.0",
     "imagemin-webp": "^5.1.0",
     "laravel-mix": "^5.0.1",
@@ -22,16 +23,7 @@
     "url": "git+https://github.com/Ludows/wpk-loader.git"
   },
   "keywords": [
-    "little",
-    "wrapper",
-    "of",
-    "laravel",
-    "mix",
-    "and",
-    "integrate",
-    "other",
-    "package",
-    "easily"
+    "laravel-mix"
   ],
   "author": "Ludoows",
   "license": "UNLICENSED",
