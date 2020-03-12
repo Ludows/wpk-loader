@@ -1,21 +1,42 @@
 {
-    "name": "@mediactive-digital/wpk-loader-package",
-    "version": "1.0.0",
-    "description": "little wrapper of laravel mix and integrate other package easily",
-    "main": "index.js",
-    "dependencies": {
-        "@babel/polyfill": "^7.8.7",
-        "@ckeditor/ckeditor5-build-classic": "^17.0.0",
-        "cross-env": "^7.0",
-        "imagemin": "^6.1.0",
-        "imagemin-webp": "^5.1.0",
-        "laravel-mix": "^5.0.1",
-        "laravel-mix-purgecss": "^4.2.0",
-        "resolve-url-loader": "^3.1.1",
-        "sass": "^1.26.2",
-        "sass-loader": "^8.0.2"
-    },
-    "keywords": [],
-    "author": "@mediactive-digital",
-    "license": "UNLICENSED"
+  "name": "@ludoows/wpk-loader",
+  "version": "1.0.0",
+  "description": "little wrapper of laravel mix and integrate other package easily",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "cross-env": "^7.0",
+    "imagemin": "^6.1.0",
+    "imagemin-webp": "^5.1.0",
+    "laravel-mix": "^5.0.1",
+    "laravel-mix-purgecss": "^4.2.0",
+    "resolve-url-loader": "^3.1.1",
+    "sass": "^1.26.2",
+    "sass-loader": "^8.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ludows/wpk-loader.git"
+  },
+  "keywords": [
+    "little",
+    "wrapper",
+    "of",
+    "laravel",
+    "mix",
+    "and",
+    "integrate",
+    "other",
+    "package",
+    "easily"
+  ],
+  "author": "Ludoows",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Ludows/wpk-loader/issues"
+  },
+  "homepage": "https://github.com/Ludows/wpk-loader#readme"
 }
