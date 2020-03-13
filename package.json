@@ -16,7 +16,6 @@
     "sass-loader": "^8.0.2"
   },
   "scripts": {
-    // "postinstall": "npm install"
   },
   "repository": {
     "type": "git",
