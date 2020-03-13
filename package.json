@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "little wrapper of laravel mix and integrate other package easily",
   "main": "index.js",
-  "dependencies": {
+  "devDependencies": {
     "@babel/polyfill": "^7.8.7",
     "cross-env": "^7.0",
     "deepmerge": "^4.2.2",
