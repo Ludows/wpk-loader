@@ -1,14 +1,9 @@
 {
-    // tell how wpk-loader work..
     "recursive": true,
-    // "mode" : "discover",
     "mode" : "manual",
-    // can be a string or array 
     "folders": [
         "/resources/"
     ],
     "mix": "default",
-    "plugins": [
-        
-    ]
+    "plugins": []
 }
