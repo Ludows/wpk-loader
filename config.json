@@ -1,9 +1,9 @@
 {
     "recursive": true,
-    "mode" : "manual",
     "folders": [
         "/resources/"
     ],
     "mix": "default",
-    "plugins": []
+    "plugins": [],
+    "extensions": []
 }

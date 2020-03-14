@@ -1,4 +1,5 @@
 const helpers = require('./helpers');
+const colors = require('colors');
 
 console.log('helpers', helpers)
 class Wpk_Core {
@@ -8,35 +9,27 @@ class Wpk_Core {
     getPlugins() {
         return this.options.plugins;
     }
-    getMode() {
-        return this.options.mode;
-    }
     getFolders() {
         return this.options.folders;
     }
     prepare() {
-        let paths = undefined;
-        let mode = this.getMode();
+        let paths = [];
         let folders = this.getFolders();
         let recursive = this.options.recursive;
-        switch (mode) {
-            case "manual":
-
-                break;
-
-            case "discover":
-
-                break;
-
-            default:
-                console.log('The mode "'+mode+'" is undefined.'.red)
-                console.log('Modes availables are discover and manual'.underline.red)
-                process.exit(1);
-                break;
+        if (typeof folders != 'array') {
+            console.log('you must provide an array of folders'.red)
+            process.exit(1);
         }
-    }
-    start() {
-        this.prepare();
-    }
+
+        folders.forEach((folder) => {
+            var links = helpers.walker(folders, [], recursive);
+            paths.prototype.push.apply(paths, links)
+        })
+        
+    break;
+}
+start() {
+    this.prepare();
+}
 }
 module.exports = Wpk_Core;

@@ -8,7 +8,6 @@ class Wpk_Helpers {
         if(opts === undefined) {
             opts = {
                 recursive: true,
-                mode: 'discover',
                 folders: 'resources',
                 mix: 'default',
                 plugins: []            
