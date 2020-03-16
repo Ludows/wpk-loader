@@ -1,7 +1,8 @@
 const helpers = require('./helpers');
 const colors = require('colors');
+const path = require('path');
 
-console.log('helpers', helpers)
+// console.log('helpers', helpers)
 class Wpk_Core {
     constructor(opts) {
         this.options = helpers.getConfig(opts);
@@ -15,21 +16,23 @@ class Wpk_Core {
     prepare() {
         let paths = [];
         let folders = this.getFolders();
+        // console.log('folders', folders)
+        // console.log('typeof folders', folders instanceof Array)
         let recursive = this.options.recursive;
-        if (typeof folders != 'array') {
+        if (!folders instanceof Array) {
             console.log('you must provide an array of folders'.red)
             process.exit(1);
         }
 
         folders.forEach((folder) => {
-            var links = helpers.walker(folders, [], recursive);
-            paths.prototype.push.apply(paths, links)
+            // console.log('folder dir', folder)
+            var links = helpers.walker(path.join(process.cwd(), folder), [], recursive);
+            // console.log('links', links)
+            paths.concat(links)
         })
-        
-    break;
-}
-start() {
-    this.prepare();
-}
+    }
+    start() {
+        this.prepare();
+    }
 }
 module.exports = Wpk_Core;

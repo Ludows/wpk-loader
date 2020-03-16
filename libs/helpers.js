@@ -50,5 +50,24 @@ class Wpk_Helpers {
         //  console.log('debug folder recursive', filelist)
         return filelist;
       }
+      static isDir(pth) {
+        let rt = false;
+        var stat = fs.lstatSync(pth);
+        if(stat.isDirectory()) {
+            rt = true;
+        }
+        return rt;
+      }
+      static isFile(str) {
+        let rt = false;
+        // // console.log('isFile debug', str)
+        var fileSpl = str.replace(/\\/g, '/').split('/');
+        var filetoTest = fileSpl[fileSpl.length - 1];
+        // console.log('file to test', filetoTest)
+        if(filetoTest.endsWith('.js') || filetoTest.endsWith('.sass') || filetoTest.endsWith('.scss')) {
+            rt = true;
+        }
+        return rt;
+      }
 }
 module.exports = Wpk_Helpers;
