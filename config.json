@@ -2,10 +2,11 @@
     "recursive": true,
     "autoload": false,
     "logger": false,
+    "version": true,
+    "source-map": true,
     "folders": [
         "/resources/"
     ],
     "mix": "default",
-    "plugins": [],
-    "extensions": []
+    "plugins": []
 }

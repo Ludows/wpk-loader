@@ -1,7 +1,10 @@
 const fs = require('fs');
 const merge = require('deepmerge');
+const path = require('path');
+const translator = require('./translator');
 
 class Wpk_Helpers {
+
     static getConfig(opts) {
         console.log('opts', opts);
 
@@ -24,12 +27,16 @@ class Wpk_Helpers {
         return opts;
 
     }
+    static getSupportedExtensions() {
+        return Object.keys(translator);
+    }
     static walker(dir, filelist, recursive) {
         var fs = fs || require('fs'),
         files = fs.existsSync(dir) ? fs.readdirSync(dir) : [],
         filelist = filelist || [];
         let that = this;
         files.forEach(function(file) {
+            console.log('extname', path.extname(file))
             if(recursive != undefined && recursive) {
                 if (fs.statSync(path.join(dir, file)).isDirectory()) {
                     filelist = that.walker(path.join(dir, file), filelist, true);
