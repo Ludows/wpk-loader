@@ -30,6 +30,7 @@ class Wpk_Core {
             // console.log('links', links)
             paths.concat(links)
         })
+        console.log('paths', paths)
     }
     start() {
         this.prepare();

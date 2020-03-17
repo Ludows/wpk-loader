@@ -1,5 +1,7 @@
 {
     "recursive": true,
+    "autoload": false,
+    "logger": false,
     "folders": [
         "/resources/"
     ],
