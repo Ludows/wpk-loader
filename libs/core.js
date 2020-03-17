@@ -28,7 +28,7 @@ class Wpk_Core {
             // console.log('folder dir', folder)
             var links = helpers.walker(path.join(process.cwd(), folder), [], recursive);
             // console.log('links', links)
-            paths.concat(links)
+            paths = paths.concat(links)
         })
         console.log('paths', paths)
     }

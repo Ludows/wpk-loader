@@ -16,10 +16,12 @@ class Wpk_Helpers {
                 plugins: []            
             }
             opts._mixConfig = require('../configs/default');
+            opts.extensions = Wpk_Helpers.getSupportedExtensions();
         }
         else {
             opts = merge( require('../config.json'),  opts);
             opts._mixConfig = require('../configs/'+ opts.mix +'');
+            opts.extensions = Wpk_Helpers.getSupportedExtensions();
         }
 
         // return merge( require('../configs/default') ,  opts);
@@ -31,25 +33,32 @@ class Wpk_Helpers {
         return Object.keys(translator);
     }
     static walker(dir, filelist, recursive) {
+        let extensions = Wpk_Helpers.getSupportedExtensions();
         var fs = fs || require('fs'),
         files = fs.existsSync(dir) ? fs.readdirSync(dir) : [],
         filelist = filelist || [];
         let that = this;
         files.forEach(function(file) {
-            console.log('extname', path.extname(file))
+            // console.log('extname', path.extname(file))
             if(recursive != undefined && recursive) {
                 if (fs.statSync(path.join(dir, file)).isDirectory()) {
                     filelist = that.walker(path.join(dir, file), filelist, true);
                 }
                 else {
-                    filelist.push(path.join(dir, file));
+                    let extname = path.extname(file).substr(1);
+                    if(extensions.indexOf(extname) > -1) {
+                        filelist.push(path.join(dir, file));
+                    }
                 }
             }
             else {
                 var full_path = path.join(dir, file);
-                if(that.isFile(full_path) === true) {
-                    filelist.push(path.join(dir, file));
-                }
+                // if(that.isFile(full_path) === true) {
+                    let extname = path.extname(file).substr(1);
+                    if(extensions.indexOf(extname) > -1) {
+                        filelist.push(full_path);
+                    }
+                // }
 
             }
 
@@ -65,16 +74,10 @@ class Wpk_Helpers {
         }
         return rt;
       }
-      static isFile(str) {
-        let rt = false;
-        // // console.log('isFile debug', str)
-        var fileSpl = str.replace(/\\/g, '/').split('/');
-        var filetoTest = fileSpl[fileSpl.length - 1];
-        // console.log('file to test', filetoTest)
-        if(filetoTest.endsWith('.js') || filetoTest.endsWith('.sass') || filetoTest.endsWith('.scss')) {
-            rt = true;
-        }
-        return rt;
+      static getFileName(file) {
+        let extname = path.extname(file).substr(1);
+        var file = path.basename(file,extname);
+        return file;
       }
 }
 module.exports = Wpk_Helpers;
