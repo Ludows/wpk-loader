@@ -1,4 +1,4 @@
-{
+const baseConfiguration = {
     "recursive": true,
     "autoload": false,
     "version": true,
@@ -11,3 +11,5 @@
     "mix": "default",
     "plugins": []
 }
+
+module.exports = baseConfiguration;

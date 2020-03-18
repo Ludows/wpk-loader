@@ -9,17 +9,12 @@ class Wpk_Helpers {
         console.log('opts', opts);
 
         if(opts === undefined) {
-            opts = {
-                recursive: true,
-                folders: 'resources',
-                mix: 'default',
-                plugins: []            
-            }
+            opts = require('../config.js')
             opts._mixConfig = require('../configs/default');
             opts.extensions = Wpk_Helpers.getSupportedExtensions();
         }
         else {
-            opts = merge( require('../config.json'),  opts);
+            opts = merge( require('../config.js'),  opts);
             opts._mixConfig = require('../configs/'+ opts.mix +'');
             opts.extensions = Wpk_Helpers.getSupportedExtensions();
         }
