@@ -2,6 +2,7 @@ const helpers = require('./helpers');
 const colors = require('colors');
 const path = require('path');
 const mix = require('laravel-mix');
+const Wpk_PluginBase = require('./plugin');
 
 const events = require('events');
 const eventEmitter = new events.EventEmitter();
@@ -12,6 +13,7 @@ const eventEmitter = new events.EventEmitter();
 class Wpk_Core {
     constructor(opts) {
         this.options = helpers.getConfig(opts);
+        this.eventManager = eventEmitter;
         helpers.setWpkInstance(this);
     }
     getPlugins() {
@@ -42,6 +44,14 @@ class Wpk_Core {
     }
     loadPlugins() {
         let plugins = this.getPlugins();
+        console.log('plugins', plugins)
+        
+        plugins.forEach((plugin) => {
+            console.log(plugin instanceof Wpk_PluginBase)
+            if(!plugin instanceof Wpk_PluginBase) {
+                throw new Error('Plugin :'+ plugin +' must have an instance of Wpk_PluginBase')
+            }
+        })
     }
     generate(array) {
 
@@ -66,7 +76,7 @@ class Wpk_Core {
             listForMix.push(obj);
 
         })
-        console.log('listForMix', listForMix)
+        // console.log('listForMix', listForMix)
         return listForMix;
     }
     loadWorker(list) {
@@ -74,7 +84,7 @@ class Wpk_Core {
         let mixInstance = mix;
         mixInstance.options(this.options._mixConfig);
 
-        eventEmitter.emit('wpk-loader:extendOptions', mixInstance);
+        this.eventManager.emit('wpk-loader:extendOptions', mixInstance);
 
         if(this.options.enableSourceMaps) {
             if (!mixInstance.inProduction()) {
@@ -96,18 +106,18 @@ class Wpk_Core {
         mixInstance.then((stats) => {
             // C'est ici que l'on va créer un event nodejs
             // this.manifestProcess();
-            eventEmitter.emit('wpk-loader:end', mixInstance);
+            this.eventManager.emit('wpk-loader:end', mixInstance);
 
        });
     }
     start() {
         this.loadPlugins();
-        eventEmitter.emit('wpk-loader:init');
+        this.eventManager.emit('wpk-loader:init');
         let prepare = this.prepare();
-        eventEmitter.emit('wpk-loader:beforeGenerate');
+        this.eventManager.emit('wpk-loader:beforeGenerate');
         let list = this.generate(prepare);
-        eventEmitter.emit('wpk-loader:beforeWorkers');
-        this.loadWorker(list);
+        this.eventManager.emit('wpk-loader:beforeWorkers');
+        // this.loadWorker(list);
     }
 }
 module.exports = Wpk_Core;

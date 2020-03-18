@@ -1,7 +1,10 @@
 class Wpk_PluginBase {
-    constructor(name, wpkLoaderInstance) {
+    constructor(name, opts) {
         this.name = name;
-        this._wpk = wpkLoaderInstance;
+        this.options = opts;
+    }
+    setWpkInstance(wpkInstance) {
+        this._wpk = wpkInstance;
     }
     getWpkInstance() {
         return this._wpk;
