@@ -3,6 +3,11 @@ const colors = require('colors');
 const path = require('path');
 const mix = require('laravel-mix');
 
+const events = require('events');
+const eventEmitter = new events.EventEmitter();
+
+
+
 // console.log('helpers', helpers)
 class Wpk_Core {
     constructor(opts) {
@@ -35,6 +40,9 @@ class Wpk_Core {
         // console.log('paths', pathsList)
         return pathsList;
     }
+    loadPlugins() {
+        let plugins = this.getPlugins();
+    }
     generate(array) {
 
         let listForMix = [];
@@ -66,6 +74,8 @@ class Wpk_Core {
         let mixInstance = mix;
         mixInstance.options(this.options._mixConfig);
 
+        eventEmitter.emit('wpk-loader:extendOptions', mixInstance);
+
         if(this.options.enableSourceMaps) {
             if (!mixInstance.inProduction()) {
 
@@ -86,12 +96,17 @@ class Wpk_Core {
         mixInstance.then((stats) => {
             // C'est ici que l'on va créer un event nodejs
             // this.manifestProcess();
+            eventEmitter.emit('wpk-loader:end', mixInstance);
 
        });
     }
     start() {
+        this.loadPlugins();
+        eventEmitter.emit('wpk-loader:init');
         let prepare = this.prepare();
+        eventEmitter.emit('wpk-loader:beforeGenerate');
         let list = this.generate(prepare);
+        eventEmitter.emit('wpk-loader:beforeWorkers');
         this.loadWorker(list);
     }
 }
