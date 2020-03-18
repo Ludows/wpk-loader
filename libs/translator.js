@@ -1,4 +1,8 @@
 const translator = {
+    predictedFolders: {
+        js: ['js', 'tsx', 'jsx', 'ts'],
+        css: ['css', 'sass', 'less', 'stylus', 'scss']
+    },
     extensions: {
         js: 'js',
         scss: 'css',

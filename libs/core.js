@@ -1,6 +1,7 @@
 const helpers = require('./helpers');
 const colors = require('colors');
 const path = require('path');
+const mix = require('laravel-mix');
 
 // console.log('helpers', helpers)
 class Wpk_Core {
@@ -57,11 +58,41 @@ class Wpk_Core {
             listForMix.push(obj);
 
         })
-        // console.log('listForMix', listForMix)
+        console.log('listForMix', listForMix)
+        return listForMix;
+    }
+    loadWorker(list) {
+        
+        let mixInstance = mix;
+        mixInstance.options(this.options._mixConfig);
+
+        if(this.options.enableSourceMaps) {
+            if (!mixInstance.inProduction()) {
+
+                mixInstance.webpackConfig({
+                    devtool: 'source-map'
+                })
+                .sourceMaps();
+            }
+        }
+        
+        list.forEach((linkObject) => {
+            let mixLink;
+            mixLink = mixInstance[linkObject.mixFunction](linkObject.sourcePath, linkObject.destPath)
+            if(this.options.version) {
+                mixLink = mixInstance.version();
+            }
+        })
+        mixInstance.then((stats) => {
+            // C'est ici que l'on va créer un event nodejs
+            // this.manifestProcess();
+
+       });
     }
     start() {
         let prepare = this.prepare();
-        this.generate(prepare);
+        let list = this.generate(prepare);
+        this.loadWorker(list);
     }
 }
 module.exports = Wpk_Core;

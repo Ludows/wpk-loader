@@ -1,9 +1,8 @@
 {
     "recursive": true,
     "autoload": false,
-    "logger": false,
     "version": true,
-    "source-map": true,
+    "enableSourceMaps": true,
     "folders": [
         "/resources/"
     ],

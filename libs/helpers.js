@@ -98,14 +98,55 @@ class Wpk_Helpers {
           return Wpk_Helpers.instance;
       }
       static getDestPath(file) {
-        //   console.log('getDestPath', file)
-          let basePath = Wpk_Helpers.getBasePath();
+        //   console.log('getDestPath', file) 
+          let destPath = undefined;
+
+        //   let basePath = Wpk_Helpers.getBasePath();
           let instance = Wpk_Helpers.getWpkInstance();
 
-          let parsedFile = path.parse(file);
-          console.log('parsedFile', parsedFile)
+          let parsedDir = path.dirname(file);
+          let ext = Wpk_Helpers.getFileType(file);
+          let File = Wpk_Helpers.getFile(file);
+        //   console.log('instance', instance)
 
+          for (let index = 0; index < instance.options.folders.length; index++) {
+              const folder = instance.options.folders[index];
+              if(parsedDir.indexOf(folder) > -1) {
+                parsedDir = parsedDir.replace(folder, path.sep+instance.options.outputFolder+path.sep);
 
+                if(translator.needChange[ext]) {
+                    
+
+                    let extension_for_folder = translator.extensions[ext];
+
+                    let predictedFolders = translator.predictedFolders[extension_for_folder];
+                    // console.log('predictedFolders', predictedFolders)
+                    // console.log('ext', ext)
+
+                    for (let k = 0; k < predictedFolders.length; k++) {
+                        const predictedFolder = predictedFolders[k];
+                        if(parsedDir.indexOf(predictedFolder) > -1) {
+                            parsedDir = parsedDir.replace(predictedFolder, extension_for_folder);
+                            break;
+                        }
+                        
+                    }
+
+                    const reg = new RegExp(ext, 'g');
+                    // console.log('reg', reg)
+
+                    File = File.replace(reg, extension_for_folder);
+                }
+
+                destPath = path.join(parsedDir, File);
+
+                // console.log('destPath', destPath)
+
+                break;
+              }
+              
+          }
+          return destPath;
 
       }
       static getBasePath() {
