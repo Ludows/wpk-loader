@@ -6,6 +6,7 @@ const path = require('path');
 class Wpk_Core {
     constructor(opts) {
         this.options = helpers.getConfig(opts);
+        helpers.setWpkInstance(this);
     }
     getPlugins() {
         return this.options.plugins;

@@ -91,9 +91,16 @@ class Wpk_Helpers {
         let extname = path.extname(file).substr(1);
         return translator.mix[extname];
       }
+      static setWpkInstance(instance) {
+        Wpk_Helpers.instance = instance;
+      }
+      static getWpkInstance() {
+          return Wpk_Helpers.instance;
+      }
       static getDestPath(file) {
         //   console.log('getDestPath', file)
           let basePath = Wpk_Helpers.getBasePath();
+          let instance = Wpk_Helpers.getWpkInstance();
 
           let parsedFile = path.parse(file);
           console.log('parsedFile', parsedFile)
