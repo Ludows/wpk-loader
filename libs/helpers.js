@@ -30,7 +30,7 @@ class Wpk_Helpers {
 
     }
     static getSupportedExtensions() {
-        return Object.keys(translator.extensions);
+        return Object.keys(translator);
     }
     static walker(dir, filelist, recursive) {
         let extensions = Wpk_Helpers.getSupportedExtensions();
@@ -82,6 +82,14 @@ class Wpk_Helpers {
       static getFileType(file) {
         let extname = path.extname(file).substr(1);
         return extname;
+      }
+      static getMixFunction(file) {
+        let extname = path.extname(file).substr(1);
+        return translator.mix[extname];
+      }
+      static getDestPath(file) {
+          console.log('getDestPath', file)
+
       }
 }
 module.exports = Wpk_Helpers;

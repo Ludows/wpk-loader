@@ -46,8 +46,17 @@ class Wpk_Core {
 
         filtered.forEach((linkFiltered) => {
             
+            let obj = {
+                type : helpers.getFileType(linkFiltered),
+                mixFunction: helpers.getMixFunction(linkFiltered),
+                destPath: helpers.getDestPath(linkFiltered),
+                sourcePath: linkFiltered
+            }
+
+            listForMix.push(obj);
+
         })
-        console.log('filtered', filtered)
+        console.log('listForMix', listForMix)
     }
     start() {
         let prepare = this.prepare();
