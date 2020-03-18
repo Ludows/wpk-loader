@@ -7,6 +7,8 @@
     "folders": [
         "/resources/"
     ],
+    "excludeFolders": [],
+    "outputFolder" : "public",
     "mix": "default",
     "plugins": []
 }

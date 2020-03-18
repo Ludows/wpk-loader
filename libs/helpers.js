@@ -79,5 +79,9 @@ class Wpk_Helpers {
         var file = path.basename(file,extname);
         return file;
       }
+      static getFileType(file) {
+        let extname = path.extname(file).substr(1);
+        return extname;
+      }
 }
 module.exports = Wpk_Helpers;

@@ -14,7 +14,7 @@ class Wpk_Core {
         return this.options.folders;
     }
     prepare() {
-        let paths = [];
+        let pathsList = [];
         let folders = this.getFolders();
         // console.log('folders', folders)
         // console.log('typeof folders', folders instanceof Array)
@@ -28,12 +28,23 @@ class Wpk_Core {
             // console.log('folder dir', folder)
             var links = helpers.walker(path.join(process.cwd(), folder), [], recursive);
             // console.log('links', links)
-            paths = paths.concat(links)
+            pathsList = pathsList.concat(links)
         })
-        console.log('paths', paths)
+        console.log('paths', pathsList)
+        return pathsList;
+    }
+    generate(array) {
+        // Nous restons toujours sur la même logique pour les fichiers css et js.
+        // Les fichiers qui auront un underscore ne seront pas process pour le wpk-loader  
+        let filtered = array.filter((link) => {
+            let ext = helpers.getFileName(link);
+            !ext.startWith('_');
+        }) 
+        console.log('filtered', filtered)
     }
     start() {
-        this.prepare();
+        let prepare = this.prepare();
+        this.generate(prepare);
     }
 }
 module.exports = Wpk_Core;
