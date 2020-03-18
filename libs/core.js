@@ -30,7 +30,7 @@ class Wpk_Core {
             // console.log('links', links)
             pathsList = pathsList.concat(links)
         })
-        console.log('paths', pathsList)
+        // console.log('paths', pathsList)
         return pathsList;
     }
     generate(array) {
@@ -56,7 +56,7 @@ class Wpk_Core {
             listForMix.push(obj);
 
         })
-        console.log('listForMix', listForMix)
+        // console.log('listForMix', listForMix)
     }
     start() {
         let prepare = this.prepare();

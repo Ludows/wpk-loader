@@ -30,7 +30,7 @@ class Wpk_Helpers {
 
     }
     static getSupportedExtensions() {
-        return Object.keys(translator);
+        return Object.keys(translator.extensions);
     }
     static walker(dir, filelist, recursive) {
         let extensions = Wpk_Helpers.getSupportedExtensions();
@@ -79,6 +79,10 @@ class Wpk_Helpers {
         var file = path.basename(file,extname);
         return file;
       }
+      static getFile(file) {
+        var file = path.basename(file);
+        return file;
+      }
       static getFileType(file) {
         let extname = path.extname(file).substr(1);
         return extname;
@@ -88,8 +92,17 @@ class Wpk_Helpers {
         return translator.mix[extname];
       }
       static getDestPath(file) {
-          console.log('getDestPath', file)
+        //   console.log('getDestPath', file)
+          let basePath = Wpk_Helpers.getBasePath();
 
+          let parsedFile = path.parse(file);
+          console.log('parsedFile', parsedFile)
+
+
+
+      }
+      static getBasePath() {
+          return process.cwd();
       }
 }
 module.exports = Wpk_Helpers;
