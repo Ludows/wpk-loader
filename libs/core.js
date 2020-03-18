@@ -34,12 +34,19 @@ class Wpk_Core {
         return pathsList;
     }
     generate(array) {
+
+        let listForMix = [];
         // Nous restons toujours sur la même logique pour les fichiers css et js.
         // Les fichiers qui auront un underscore ne seront pas process pour le wpk-loader  
-        let filtered = array.filter((link) => {
+        let filtered = array.filter(function(link) {
             let ext = helpers.getFileName(link);
-            !ext.startWith('_');
+            let firstLetter = ext.charAt(0);
+            return firstLetter != '_';
         }) 
+
+        filtered.forEach((linkFiltered) => {
+            
+        })
         console.log('filtered', filtered)
     }
     start() {

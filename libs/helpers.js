@@ -30,7 +30,7 @@ class Wpk_Helpers {
 
     }
     static getSupportedExtensions() {
-        return Object.keys(translator);
+        return Object.keys(translator.extensions);
     }
     static walker(dir, filelist, recursive) {
         let extensions = Wpk_Helpers.getSupportedExtensions();
