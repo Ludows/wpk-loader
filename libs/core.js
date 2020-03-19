@@ -65,7 +65,7 @@ class Wpk_Core {
                     console.log('You are sure you\'re running a plugin ? : '+ plugin[0] +' must extend about the PluginBase Class'.red)
                     process.exit(1);
                 }
-
+                thePlugin.setWpkInstance(this); // ici nous récupérons l'instance pour avoir le eventManager
                 thePlugin.run();
             }
             else {

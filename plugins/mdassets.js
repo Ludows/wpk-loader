@@ -8,6 +8,11 @@ class MdAssetsAutoload extends PluginBase {
     }
     run() {
         // console.log('prout')
+        const EventManager = this.getEventManager();
+
+        EventManager.on('wpk-loader:beforeWorkers', function() {
+            console.log('prout')
+        })
     }
 }
 

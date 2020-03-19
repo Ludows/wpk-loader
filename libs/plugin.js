@@ -9,6 +9,9 @@ class Wpk_PluginBase {
     getWpkInstance() {
         return this._wpk;
     }
+    getEventManager() {
+        return this._wpk.eventManager;
+    }
     run() {
         // this method is called 
         // And so magic here..
