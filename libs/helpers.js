@@ -153,5 +153,8 @@ class Wpk_Helpers {
       static getPluginsPath() {
         return path.join(Wpk_Helpers.getBasePath(), 'node_modules',  Wpk_Helpers.getPackageName(), 'plugins')
       }
+      static getPublicPath() {
+        return path.join(Wpk_Helpers.getBasePath(), 'public');
+      }
 }
 module.exports = Wpk_Helpers;

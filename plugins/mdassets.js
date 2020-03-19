@@ -1,5 +1,8 @@
 const PluginBase = require('../libs/plugin');
-console.log('PluginBase', PluginBase)
+console.log('PluginBase', PluginBase);
+const path = require('path');
+const helpers = require('../libs/helpers');
+const fs = require('fs');
 
 class MdAssetsAutoload extends PluginBase {
     constructor(name, opts) {
@@ -12,6 +15,11 @@ class MdAssetsAutoload extends PluginBase {
 
         EventManager.on('wpk-loader:beforeWorkers', function() {
             console.log('prout')
+            let mixManifest = path.join(helpers.getPublicPath(), 'mix-manifest.json');
+
+            let rawData = fs.readFileSync(mixManifest);
+            let mixJson = JSON.parse(rawData);
+            console.log('mixJson', mixJson)
         })
     }
 }
