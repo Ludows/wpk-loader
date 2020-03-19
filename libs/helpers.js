@@ -147,5 +147,11 @@ class Wpk_Helpers {
       static getBasePath() {
           return process.cwd();
       }
+      static getPackageName() {
+        return '@ludoows/wpk-loader';
+      }
+      static getPluginsPath() {
+        return path.join(Wpk_Helpers.getBasePath(), 'node_modules',  Wpk_Helpers.getPackageName(), 'plugins')
+      }
 }
 module.exports = Wpk_Helpers;

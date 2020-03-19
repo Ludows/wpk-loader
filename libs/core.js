@@ -2,12 +2,15 @@ const helpers = require('./helpers');
 const colors = require('colors');
 const path = require('path');
 const mix = require('laravel-mix');
+const fs = require('fs');
 
 const events = require('events');
 const eventEmitter = new events.EventEmitter();
 
+const PluginBase = require('./plugin');
 
-const mdassets = require('@ludoows/wpk-loader/mdassets');
+
+// const mdassets = require('@ludoows/wpk-loader/mdassets');
 
 
 
@@ -49,8 +52,21 @@ class Wpk_Core {
         console.log('plugins', plugins)
         
         plugins.forEach((plugin) => {
-            console.log(plugin.hasOwnProperty('run'))
-            console.log(plugin.run)
+
+            let pathPlugin = helpers.getPluginsPath()
+
+            let pathToPlugin = path.join(pathPlugin, plugin[0]+'.js')
+
+            if(fs.existsSync(pathToPlugin)) {
+                let thePlugin = require(pathToPlugin);
+                console.log('PluginBase instance of ', thePlugin instanceof PluginBase)
+            }
+            else {
+                console.log('Plugin : '+ plugin[0] +' does\'nt exist'.red)
+                process.exit(1);
+            }
+            // console.log(plugin.hasOwnProperty('run'))
+            // console.log(plugin.run)
             // if(!plugin.hasOwnProperty('run')) {
             //     throw new Error('Plugin :'+ plugin +' must have an instance of PluginBaseClass')
             // }
