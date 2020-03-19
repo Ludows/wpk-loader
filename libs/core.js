@@ -7,6 +7,9 @@ const events = require('events');
 const eventEmitter = new events.EventEmitter();
 
 
+const mdassets = require('@ludoows/wpk-loader/mdassets');
+
+
 
 // console.log('helpers', helpers)
 class Wpk_Core {
