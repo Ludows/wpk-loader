@@ -17,7 +17,7 @@
     "colors": "^1.4.0"  
   },
   "scripts": {
-    "postinstall": "postinstall.js"
+    "postinstall": "node ./postinstall.js"
   },
   "repository": {
     "type": "git",
