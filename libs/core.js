@@ -58,18 +58,20 @@ class Wpk_Core {
             let pathToPlugin = path.join(pathPlugin, plugin[0]+'.js')
 
             if(fs.existsSync(pathToPlugin)) {
-                let thePlugin = require(pathToPlugin);
+
+                let thePlugin = new (require(pathToPlugin))(plugin[0], plugin[1]);
                 console.log('PluginBase instance of ', thePlugin instanceof PluginBase)
+                if(!(thePlugin instanceof PluginBase)) {
+                    console.log('You are sure you\'re running a plugin ? : '+ plugin[0] +' must extend about the PluginBase Class'.red)
+                    process.exit(1);
+                }
+
+                thePlugin.run();
             }
             else {
                 console.log('Plugin : '+ plugin[0] +' does\'nt exist'.red)
                 process.exit(1);
             }
-            // console.log(plugin.hasOwnProperty('run'))
-            // console.log(plugin.run)
-            // if(!plugin.hasOwnProperty('run')) {
-            //     throw new Error('Plugin :'+ plugin +' must have an instance of PluginBaseClass')
-            // }
         })
     }
     generate(array) {
