@@ -1,13 +1,14 @@
 const PluginBase = require('../libs/plugin');
+console.log('PluginBase', PluginBase)
 
-class MdAssets extends PluginBase {
+class MdAssetsAutoload extends PluginBase {
     constructor(opts) {
         console.log('opts', opts)
         super('mdassets', opts);
     }
     run() {
-
+        console.log('prout')
     }
 }
 
-module.exports = MdAssets;
+module.exports = MdAssetsAutoload;

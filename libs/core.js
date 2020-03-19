@@ -2,7 +2,6 @@ const helpers = require('./helpers');
 const colors = require('colors');
 const path = require('path');
 const mix = require('laravel-mix');
-const Wpk_PluginBase = require('./plugin');
 
 const events = require('events');
 const eventEmitter = new events.EventEmitter();
@@ -47,10 +46,11 @@ class Wpk_Core {
         console.log('plugins', plugins)
         
         plugins.forEach((plugin) => {
-            console.log(plugin instanceof Wpk_PluginBase)
-            if(!plugin instanceof Wpk_PluginBase) {
-                throw new Error('Plugin :'+ plugin +' must have an instance of Wpk_PluginBase')
-            }
+            console.log(plugin.hasOwnProperty('run'))
+            console.log(plugin.run)
+            // if(!plugin.hasOwnProperty('run')) {
+            //     throw new Error('Plugin :'+ plugin +' must have an instance of PluginBaseClass')
+            // }
         })
     }
     generate(array) {
