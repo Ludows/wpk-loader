@@ -1,7 +1,11 @@
+const helpers = require('./helpers');
 class Wpk_PluginBase {
     constructor(name, opts) {
         this.name = name;
-        this.options = opts;
+        this.options = helpers.mergeConfig(this.getDefaults(), opts);
+    }
+    getDefaults() {
+        return {};
     }
     setWpkInstance(wpkInstance) {
         this._wpk = wpkInstance;

@@ -59,7 +59,12 @@ class Wpk_Core {
 
             if(fs.existsSync(pathToPlugin)) {
 
+                if(plugin[1] === undefined) {
+                    plugin[1] = {};
+                }
+
                 let thePlugin = new (require(pathToPlugin))(plugin[0], plugin[1]);
+
                 console.log('PluginBase instance of ', thePlugin instanceof PluginBase)
                 if(!(thePlugin instanceof PluginBase)) {
                     console.log('You are sure you\'re running a plugin ? : '+ plugin[0] +' must extend about the PluginBase Class'.red)
@@ -138,7 +143,7 @@ class Wpk_Core {
         this.eventManager.emit('wpk-loader:beforeGenerate');
         let list = this.generate(prepare);
         this.eventManager.emit('wpk-loader:beforeWorkers');
-        // this.loadWorker(list);
+        this.loadWorker(list);
     }
 }
 module.exports = Wpk_Core;

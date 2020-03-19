@@ -156,5 +156,8 @@ class Wpk_Helpers {
       static getPublicPath() {
         return path.join(Wpk_Helpers.getBasePath(), 'public');
       }
+      static mergeConfig(obj, objtwo) {
+        return merge(obj, objtwo);
+      }
 }
 module.exports = Wpk_Helpers;
