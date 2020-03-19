@@ -14,10 +14,13 @@
     "resolve-url-loader": "^3.1.1",
     "sass": "^1.26.2",
     "sass-loader": "^8.0.2",
-    "colors": "^1.4.0",
-    "@ludoows/wpk-loader/mdassets": "file:./plugins/mdassets"
+    "colors": "^1.4.0"
+  },
+  "_moduleAliases": {
+     "@ludoows/wpk-loader/mdassets": "./plugins/mdassets"
   },
   "scripts": {
+    "postinstall": "link-module-alias"
   },
   "repository": {
     "type": "git",
