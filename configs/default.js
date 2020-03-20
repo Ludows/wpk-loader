@@ -1,10 +1,12 @@
+let env = process.env.NODE_ENV 
+ 
  var default_opts = {
    "postCss": [require("autoprefixer")({
      "browsers": ["last 5 versions"],
      "flexbox": "no-2009"
    })],
    "processCssUrls": false,
-   "purifyCss": true,
+   "purifyCss": env === 'production' ? true : false,
    "terser": {
      "parallel": 8, // Use multithreading for the processing
      "terserOptions": {
