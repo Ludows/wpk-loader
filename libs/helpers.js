@@ -159,5 +159,12 @@ class Wpk_Helpers {
       static mergeConfig(obj, objtwo) {
         return merge(obj, objtwo);
       }
+      static getMDAssets() {
+        let mdFile = path.join(Wpk_Helpers.getPublicPath(), 'mdassets-autoload.json');
+        let rawData = fs.readFileSync(mdFile);
+        let mixJson = JSON.parse(rawData);
+
+        return mixJson;
+      }
 }
 module.exports = Wpk_Helpers;
