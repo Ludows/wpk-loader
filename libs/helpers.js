@@ -27,7 +27,7 @@ class Wpk_Helpers {
     static getSupportedExtensions() {
         return Object.keys(translator.extensions);
     }
-    static walker(dir, filelist, recursive) {
+    static walker(dir, filelist, recursive, overrideExtensions = []) {
         let extensions = Wpk_Helpers.getSupportedExtensions();
         var fs = fs || require('fs'),
         files = fs.existsSync(dir) ? fs.readdirSync(dir) : [],
@@ -41,17 +41,26 @@ class Wpk_Helpers {
                 }
                 else {
                     let extname = path.extname(file).substr(1);
-                    if(extensions.indexOf(extname) > -1) {
+                    if(extensions.indexOf(extname) > -1 && overrideExtensions.length === 0) {
                         filelist.push(path.join(dir, file));
                     }
+
+                    if(overrideExtensions.indexOf(extname) > -1 && overrideExtensions.length > 0) {
+                      filelist.push(path.join(dir, file));
+                    }
+                    
                 }
             }
             else {
                 var full_path = path.join(dir, file);
                 // if(that.isFile(full_path) === true) {
                     let extname = path.extname(file).substr(1);
-                    if(extensions.indexOf(extname) > -1) {
-                        filelist.push(full_path);
+                    if(extensions.indexOf(extname) > -1 && overrideExtensions.length === 0) {
+                        filelist.push(path.join(dir, file));
+                    }
+
+                    if(overrideExtensions.indexOf(extname) > -1 && overrideExtensions.length > 0) {
+                      filelist.push(path.join(dir, file));
                     }
                 // }
 
