@@ -17,7 +17,8 @@
     "purifycss-webpack": "^0.7.0",
     "node-potrace": "^2.1.2",
     "jimp": "^0.9.6",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "webp-converter": "^2.2.3"
   },
   "scripts": {
     "postinstall": "node ./postinstall.js"
