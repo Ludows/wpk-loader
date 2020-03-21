@@ -24,7 +24,7 @@ class PotracePlugin extends PluginBase {
         const EventManager = this.getEventManager();
         const self = this;
         const folders = this.options.folders;
-        EventManager.on('wpk-loader:end', function() {
+        EventManager.once('wpk-loader:end', function() {
             // console.log('prout')
             let pathsList = [];
             folders.forEach((folder) => {
