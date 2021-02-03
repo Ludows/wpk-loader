@@ -80,7 +80,7 @@ class Wpk_Helpers {
       }
       static getFileName(file) {
         let extname = path.extname(file).substr(1);
-        var file = path.basename(file,extname);
+        var file = path.basename(file,'.'+extname);
         return file;
       }
       static getFile(file) {
