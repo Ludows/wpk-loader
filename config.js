@@ -10,6 +10,7 @@ const baseConfiguration = {
     ],
     "excludeFolders": [],
     "outputFolder" : "public",
+    "sw" : 'sw.js', //for disable search sw, simply bind to false
     "mix": "default",
     "plugins": [
         ['mdassets', {'file': 'mdassets-autoload.json', 'destPath': 'public'}]

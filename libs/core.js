@@ -81,6 +81,7 @@ class Wpk_Core {
     }
     generate(array) {
 
+        let self = this;
         let listForMix = [];
         // Nous restons toujours sur la même logique pour les fichiers css et js.
         // Les fichiers qui auront un underscore ne seront pas process pour le wpk-loader  
@@ -92,10 +93,12 @@ class Wpk_Core {
 
         filtered.forEach((linkFiltered) => {
             
+            let isWorker = self.options.sw != false && self.options.sw.length > 0 && linkFiltered.includes(self.options.sw);
+            
             let obj = {
                 type : helpers.getFileType(linkFiltered),
                 mixFunction: helpers.getMixFunction(linkFiltered),
-                destPath: helpers.getDestPath(linkFiltered),
+                destPath: isWorker ? path.join( helpers.getPublicPath(), self.options.sw) : helpers.getDestPath(linkFiltered),
                 sourcePath: linkFiltered
             }
 
