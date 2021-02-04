@@ -49,7 +49,7 @@ class Wpk_Core {
     }
     loadPlugins() {
         let plugins = this.getPlugins();
-        console.log('plugins', plugins)
+        // console.log('plugins', plugins)
         
         plugins.forEach((plugin) => {
 
@@ -65,7 +65,7 @@ class Wpk_Core {
 
                 let thePlugin = new (require(pathToPlugin))(plugin[0], plugin[1]);
 
-                console.log('PluginBase instance of ', thePlugin instanceof PluginBase)
+                // console.log('PluginBase instance of ', thePlugin instanceof PluginBase)
                 if(!(thePlugin instanceof PluginBase)) {
                     console.log('You are sure you\'re running a plugin ? : '+ plugin[0] +' must extend about the PluginBase Class'.red)
                     process.exit(1);
@@ -94,7 +94,7 @@ class Wpk_Core {
         filtered.forEach((linkFiltered) => {
             
             let isWorker = self.options.sw != false && self.options.sw.length > 0 && linkFiltered.includes(self.options.sw);
-            
+
             let obj = {
                 type : helpers.getFileType(linkFiltered),
                 mixFunction: helpers.getMixFunction(linkFiltered),
