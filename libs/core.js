@@ -93,7 +93,7 @@ class Wpk_Core {
 
         filtered.forEach((linkFiltered) => {
             
-            let isWorker = self.options.sw != false && self.options.sw.length > 0 && linkFiltered.includes(self.options.sw);
+            let isWorker = self.options.sw && self.options.sw != false && self.options.sw.length > 0 && linkFiltered.includes(self.options.sw);
 
             let obj = {
                 type : helpers.getFileType(linkFiltered),
